@@ -22,4 +22,15 @@ public class SourceFolder extends File {
 		}
 	}
 	
+	//names the new file with numbering and extension
+	private String nameFile(File file, String fileName, int serialNumber) {
+		
+	}
+	
+	//gets file extension
+	private String getExtension(File file) {
+		String fileName = file.getName();
+		String extension = fileName.substring((fileName.length()-4), (fileName.length()-1));
+		return "." + extension;
+	}
 }
