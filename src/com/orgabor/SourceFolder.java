@@ -24,7 +24,8 @@ public class SourceFolder extends File {
 	
 	//names the new file with numbering and extension
 	private String nameFile(File file, String fileName, int serialNumber) {
-		
+		String number = "_" + String.format("%05d", serialNumber);
+		return fileName + number + getExtension(file);
 	}
 	
 	//gets file extension
