@@ -3,7 +3,6 @@ package com.orgabor;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 
 public class SourceFolder extends File {
@@ -20,14 +19,17 @@ public class SourceFolder extends File {
 		SourceFolder sourceFolder = new SourceFolder(this.getPath());
 		for(File fileEntry : sourceFolder.listFiles()) {
 			BufferedImage bImg = readImg(fileEntry);
-			File copy = new File(destFolderPathname + "\\" + nameFile(newFileName, serialNumber));
-			try {
-				ImageIO.write(bImg, getExtension(fileEntry), copy);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			File copy = new File(destFolderPathname + "\\" + nameFile(fileEntry, newFileName, serialNumber));
+				try {
+					ImageIO.write(bImg, getExtension(fileEntry), copy);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			
 			serialNumber++;
 		}
+		
+		System.out.println((serialNumber-1) + " kép másolása befejezõdött");
 	}
 	
 	//reads img from SourceFolder
@@ -52,16 +54,16 @@ public class SourceFolder extends File {
 	}
 
 	//names the new file with numbering and extension
-	private String nameFile(String fileName, int serialNumber) {
+	private String nameFile(File file, String fileName, int serialNumber) {
 		String number = "_" + String.format("%05d", serialNumber);
-		String name = fileName + number;
+		String name = fileName + number + "." + getExtension(file);
 		return name;
 	}
 
 	//gets file extension
 	private String getExtension(File file) {
 		String fileName = file.getName();
-		String extension = fileName.substring((fileName.length()-4), (fileName.length()-1));
+		String extension = fileName.substring((fileName.length()-3), fileName.length());
 		return extension;
 	}
 
