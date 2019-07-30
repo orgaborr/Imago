@@ -5,10 +5,11 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-public class SourceFolder extends File {
+public class SourceFolder {
+	private String pathName;
 
 	public SourceFolder(String pathname) {
-		super(pathname);
+		this.pathName = pathname;
 	}
 	
 	//copies all files from source to destination folder
@@ -16,7 +17,7 @@ public class SourceFolder extends File {
 		checkDestFolder(destFolderPathname);
 		int serialNumber = 1;
 		
-		SourceFolder sourceFolder = new SourceFolder(this.getPath());
+		File sourceFolder = new File(this.pathName);
 		for(File fileEntry : sourceFolder.listFiles()) {
 			BufferedImage bImg = readImg(fileEntry);
 			File copy = new File(destFolderPathname + "\\" + nameFile(fileEntry, newFileName, serialNumber));
@@ -25,14 +26,14 @@ public class SourceFolder extends File {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-			
+				
 			serialNumber++;
 		}
 		
 		System.out.println((serialNumber-1) + " kép másolása befejezõdött");
 	}
 	
-	//reads img from SourceFolder
+	//reads img file and returns BufferedImage
 	private BufferedImage readImg(File file) {
 		BufferedImage img = null;
 		try {
