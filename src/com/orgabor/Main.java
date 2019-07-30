@@ -40,8 +40,5 @@ public class Main {
 //		}
 	}
 	
-	public static void copyImgs(File source, File destination, String newFileName) {
-		
-	}
 
 }
