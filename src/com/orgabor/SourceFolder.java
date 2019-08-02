@@ -5,20 +5,18 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-public class SourceFolder {
-	private String pathName;
+public class SourceFolder extends File {
 
 	public SourceFolder(String pathname) {
-		this.pathName = pathname;
+		super(pathname);
 	}
 	
 	//copies all files from source to destination folder
 	public void copyImgs(String destFolderPathname, String newFileName) {
 		checkDestFolder(destFolderPathname);
 		int serialNumber = 1;
-		
-		File sourceFolder = new File(this.pathName);
-		for(File fileEntry : sourceFolder.listFiles()) {
+
+		for(File fileEntry : this.listFiles()) {
 			BufferedImage bImg = readImg(fileEntry);
 			File copy = new File(destFolderPathname + "\\" + nameFile(fileEntry, newFileName, serialNumber));
 				try {
