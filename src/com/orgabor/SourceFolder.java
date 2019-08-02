@@ -11,33 +11,32 @@ public class SourceFolder extends File {
 	public SourceFolder(String pathname) {
 		super(pathname);
 	}
-	
+
 	//copies all files from source to destination folder
 	public boolean copyImgs(String destFolderPathname, String newFileName) {
-		if(checkDestFolder(destFolderPathname)) {
-			int serialNumber = 1;
+		int serialNumber = 1;
 
-			for(File fileEntry : this.listFiles()) {
-				BufferedImage bImg = readImg(fileEntry);
-				File copy = new File(destFolderPathname + "\\" + nameFile(fileEntry, newFileName, serialNumber));
-				try {
-					ImageIO.write(bImg, getExtension(fileEntry), copy);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-
-				serialNumber++;
+		for(File fileEntry : this.listFiles()) {
+			BufferedImage bImg = readImg(fileEntry);
+			if(bImg == null) {
+				continue;
+			}
+			File copy = new File(destFolderPathname + "\\" 
+								+ nameFile(fileEntry, newFileName, serialNumber));
+			try {
+				ImageIO.write(bImg, getExtension(fileEntry), copy);
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
 
-			System.out.println((serialNumber-1) + " kép másolása befejezõdött");
-			return true;
+			serialNumber++;
 		}
-		return false;
+
+		System.out.println((serialNumber-1) + " kép másolása befejezõdött");
+		return true;
 	}
-	
-	
-	
-	//reads img file and returns BufferedImage
+
+	//reads image file and returns BufferedImage
 	private BufferedImage readImg(File file) {
 		BufferedImage img = null;
 		try {

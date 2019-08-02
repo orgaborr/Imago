@@ -40,9 +40,8 @@ public class Main {
 			System.out.println("Mi legyen a fájlok közös neve? (pl. dátum-helyszín)");
 			String commonName = sc.nextLine();
 
+			//executing copy
 			System.out.println("A fájlok feldolgozása megkezdõdött");
-
-			//initializing source folder
 			SourceFolder source = new SourceFolder(sourceDir);
 			if(source.copyImgs(destDir, commonName)) {
 				break;
