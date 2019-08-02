@@ -7,7 +7,7 @@ public class Main {
 	private static Scanner sc = new Scanner(System.in);
 	
 	public static void main(String[] args) {
-		System.out.println("Üdv a RenameForAnyában! :)");
+		System.out.println("Üdv az Imago-ban!");
 
 		//asking for a source dir
 		System.out.println("Add meg a forrásmappa helyét: ");
