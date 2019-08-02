@@ -2,6 +2,7 @@ package com.orgabor;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
@@ -12,24 +13,29 @@ public class SourceFolder extends File {
 	}
 	
 	//copies all files from source to destination folder
-	public void copyImgs(String destFolderPathname, String newFileName) {
-		checkDestFolder(destFolderPathname);
-		int serialNumber = 1;
+	public boolean copyImgs(String destFolderPathname, String newFileName) {
+		if(checkDestFolder(destFolderPathname)) {
+			int serialNumber = 1;
 
-		for(File fileEntry : this.listFiles()) {
-			BufferedImage bImg = readImg(fileEntry);
-			File copy = new File(destFolderPathname + "\\" + nameFile(fileEntry, newFileName, serialNumber));
+			for(File fileEntry : this.listFiles()) {
+				BufferedImage bImg = readImg(fileEntry);
+				File copy = new File(destFolderPathname + "\\" + nameFile(fileEntry, newFileName, serialNumber));
 				try {
 					ImageIO.write(bImg, getExtension(fileEntry), copy);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-				
-			serialNumber++;
+
+				serialNumber++;
+			}
+
+			System.out.println((serialNumber-1) + " kép másolása befejezõdött");
+			return true;
 		}
-		
-		System.out.println((serialNumber-1) + " kép másolása befejezõdött");
+		return false;
 	}
+	
+	
 	
 	//reads img file and returns BufferedImage
 	private BufferedImage readImg(File file) {
@@ -43,15 +49,6 @@ public class SourceFolder extends File {
 		return img;
 	}
 	
-	//checks if destination folder exists and creates it if not
-	private void checkDestFolder(String path) {
-		File destFolder = new File(path);
-		if(!destFolder.exists()) {
-			destFolder.mkdirs();
-			System.out.println("Célmappa létrehozva: " + path);
-		}
-	}
-
 	//names the new file with numbering and extension
 	private String nameFile(File file, String fileName, int serialNumber) {
 		String number = "_" + String.format("%05d", serialNumber);
