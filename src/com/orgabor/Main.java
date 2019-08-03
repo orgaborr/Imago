@@ -41,7 +41,7 @@ public class Main {
 			String commonName = sc.nextLine();
 
 			//executing copy
-			System.out.println("A fájlok feldolgozása megkezdõdött");
+			System.out.println("A fájlok feldolgozása megkezdõdött\n...");
 			SourceFolder source = new SourceFolder(sourceDir);
 			if(source.copyImgs(destDir, commonName)) {
 				break;

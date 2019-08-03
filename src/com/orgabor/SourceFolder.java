@@ -2,7 +2,6 @@ package com.orgabor;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
@@ -17,12 +16,18 @@ public class SourceFolder extends File {
 		int serialNumber = 1;
 
 		for(File fileEntry : this.listFiles()) {
-			BufferedImage bImg = readImg(fileEntry);
-			if(bImg == null) {
+			//checks if entry is image file and skips if not
+			if(fileEntry.isFile()) {		
+				if(readImg(fileEntry) == null) {
+					continue;
+				}
+			} else {
 				continue;
 			}
-			File copy = new File(destFolderPathname + "\\" 
-								+ nameFile(fileEntry, newFileName, serialNumber));
+			
+			BufferedImage bImg = readImg(fileEntry);
+			File copy = new File(destFolderPathname, 
+								nameFile(fileEntry, newFileName, serialNumber));
 			try {
 				ImageIO.write(bImg, getExtension(fileEntry), copy);
 			} catch (IOException e) {
@@ -49,9 +54,9 @@ public class SourceFolder extends File {
 	}
 	
 	//names the new file with numbering and extension
-	private String nameFile(File file, String fileName, int serialNumber) {
+	private String nameFile(File original, String fileName, int serialNumber) {
 		String number = "_" + String.format("%05d", serialNumber);
-		String name = fileName + number + "." + getExtension(file);
+		String name = fileName + number + "." + getExtension(original);
 		return name;
 	}
 
