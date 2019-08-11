@@ -3,5 +3,5 @@ module Imago {
     requires javafx.controls;
     requires java.desktop;
 
-    opens com.orgabor;
+    opens com.orgabor.imago;
 }
