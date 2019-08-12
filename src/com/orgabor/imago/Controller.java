@@ -1,66 +1,48 @@
 package com.orgabor.imago;
 
-public class Controller {
+import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
 
-//    private static Scanner sc = new Scanner(System.in);
-//
-//    public static void main(String[] args) {
-//
-//        System.out.println("Üdv az Imago-ban!");
-//
-//        while (true) {
-//            String sourceDir = null;
-//            String destDir = null;
-//
-//            //asking for and checking source folder
-//            boolean isValid = false;
-//            while (!isValid) {
-//                System.out.println("Add meg a forrásmappa helyét: ");
-//                sourceDir = sc.nextLine();
-//                if (new File(sourceDir).exists()) {
-//                    isValid = true;
-//                } else {
-//                    System.out.println("Érvénytelen forrásmappa. Ellenõrizd a forrás útvonalát!");
-//                }
-//            }
-//
-//            //asking for and checking destination folder
-//            isValid = false;
-//            while (!isValid) {
-//                System.out.println("Add meg a célmappát: ");
-//                destDir = sc.nextLine();
-//                if (checkDestFolder(destDir)) {
-//                    isValid = true;
-//                }
-//            }
-//
-//            //asking for a common new file name
-//            System.out.println("Mi legyen a fájlok közös neve? (pl. dátum-helyszín)");
-//            String commonName = sc.nextLine();
-//
-//            //executing copy
-//            System.out.println("A fájlok feldolgozása megkezdõdött\n...");
-//            SourceFolder source = new SourceFolder(sourceDir);
-//            if (source.copyImgs(destDir, commonName)) {
-//                break;
-//            }
-//        }
-//
-//        sc.close();
-//    }
-//
-//    //checks if destination folder exists and creates it if not
-//    private static boolean checkDestFolder(String path) {
-//        File destFolder = new File(path);
-//        if (!destFolder.exists()) {
-//            destFolder.mkdirs();
-//            if (destFolder.exists()) {
-//                System.out.println("Célmappa létrehozva: " + path);
-//                return true;
-//            }
-//            System.out.println("Célmappa létrehozása sikertelen. Ellenõrizd a megadott útvonalat!");
-//            return false;
-//        }
-//        return true;
-//    }
+import java.io.File;
+
+public class Controller {
+    @FXML
+    private TextField sourceTextField;
+    @FXML
+    private TextField destTextField;
+    @FXML
+    private TextField nameTextField;
+
+    String sourceDir = sourceTextField.getText();
+    String destDir = destTextField.getText();
+    String name = nameTextField.getText();
+
+    public boolean startProcessing() {
+        if(new File(sourceDir).exists()) {
+            if(checkDestFolder(destDir)) {
+                if (new SourceFolder(sourceDir).copyImgs(destDir, name)) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        System.out.println("Érvénytelen forrásmappa. Ellenõrizd a forrás útvonalát!");
+        return false;
+    }
+
+    //checks if destination folder exists and creates it if not
+    private static boolean checkDestFolder(String path) {
+        File destFolder = new File(path);
+        if (!destFolder.exists()) {
+            destFolder.mkdirs();
+            if (destFolder.exists()) {
+                System.out.println("Célmappa létrehozva: " + path);
+                return true;
+            }
+            System.out.println("Célmappa létrehozása sikertelen. Ellenõrizd a megadott útvonalat!");
+            return false;
+        }
+        return true;
+    }
 }

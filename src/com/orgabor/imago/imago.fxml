@@ -23,21 +23,22 @@
 
             <Label text="Forrásmappa:" GridPane.rowIndex="0" GridPane.columnIndex="0"
                    GridPane.halignment="RIGHT"/>
-            <TextField fx:id="sourceDir" GridPane.rowIndex="0" GridPane.columnIndex="1"
+            <TextField fx:id="sourceTextField" GridPane.rowIndex="0" GridPane.columnIndex="1"
                        GridPane.columnSpan="30"/>
 
             <Label text="Célmappa:" GridPane.rowIndex="1" GridPane.columnIndex="0"
                    GridPane.halignment="RIGHT"/>
-            <TextField fx:id="destDir" GridPane.rowIndex="1" GridPane.columnIndex="1"
+            <TextField fx:id="destTextField" GridPane.rowIndex="1" GridPane.columnIndex="1"
                        GridPane.columnSpan="30"/>
 
             <Label text="Új fájlok neve (kiterjesztés nélkül):" GridPane.rowIndex="2" GridPane.columnIndex="0"
                    GridPane.halignment="RIGHT" wrapText="true"/>
-            <TextField fx:id="commonName" GridPane.rowIndex="2" GridPane.columnIndex="1"
+            <TextField fx:id="nameTextField" GridPane.rowIndex="2" GridPane.columnIndex="1"
                        GridPane.columnSpan="15"/>
         </GridPane>
     </center>
     <bottom>
-        <Button fx:id="goButton" text="Mehet" BorderPane.alignment="BASELINE_CENTER"/>
+        <Button fx:id="goButton" text="Mehet" BorderPane.alignment="BASELINE_CENTER"
+                onAction="#startProcessing"/>
     </bottom>
 </BorderPane>
