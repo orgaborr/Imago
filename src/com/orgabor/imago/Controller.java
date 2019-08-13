@@ -13,11 +13,11 @@ public class Controller {
     @FXML
     private TextField nameTextField;
 
-    String sourceDir = sourceTextField.getText();
-    String destDir = destTextField.getText();
-    String name = nameTextField.getText();
-
     public boolean startProcessing() {
+        String sourceDir = sourceTextField.getText();
+        String destDir = destTextField.getText();
+        String name = nameTextField.getText();
+        
         if(new File(sourceDir).exists()) {
             if(checkDestFolder(destDir)) {
                 if (new SourceFolder(sourceDir).copyImgs(destDir, name)) {
