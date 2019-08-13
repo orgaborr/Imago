@@ -20,9 +20,13 @@ public class Controller {
         
         if(new File(sourceDir).exists()) {
             if(checkDestFolder(destDir)) {
-                if (new SourceFolder(sourceDir).copyImgs(destDir, name)) {
-                    return true;
+                if(!name.equals("")) {
+                    if (new SourceFolder(sourceDir).copyImgs(destDir, name)) {
+                        return true;
+                    }
+                    return false;
                 }
+                System.out.println("Adj meg egy nevet az új képfájloknak!");
                 return false;
             }
             return false;

@@ -34,7 +34,7 @@ public class SourceFolder extends File {
             }
             serialNumber++;
         }
-        System.out.println((serialNumber - 1) + " kÃ©p mÃ¡solÃ¡sa befejezÅ‘dÃ¶tt");
+        System.out.println((serialNumber - 1) + " kép másolása befejezõdött");
         return true;
     }
 
