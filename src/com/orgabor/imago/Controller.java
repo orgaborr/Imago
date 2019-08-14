@@ -3,7 +3,11 @@ package com.orgabor.imago;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+
 import java.io.File;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Controller {
     @FXML
@@ -17,7 +21,7 @@ public class Controller {
 
     //sets initial message in TextArea
     public void initialize() {
-        messageTextArea.setText("Imago: Üdv az Imago-ban! :)");
+        printMessage("Üdv az Imago-ban! :) Töltsd ki a mezõket és katt a 'Mehet' gombra.");
     }
 
     //checks the content of TextFields and calls copyImgs @SourceFolder
@@ -59,6 +63,7 @@ public class Controller {
     @FXML
     //prints messages to TextArea
     private void printMessage(String message) {
-        messageTextArea.setText(messageTextArea.getText() + "\nImago: " + message);
+        DateFormat df = new SimpleDateFormat("hh:mm:ss");
+        messageTextArea.setText(messageTextArea.getText() + "[" + df.format(new Date())+ "] " + message + "\n");
     }
 }

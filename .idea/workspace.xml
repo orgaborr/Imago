@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="45e2426b-0bc3-469a-8b25-c3e0e51d2551" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/src/com/orgabor/imago/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/orgabor/imago/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/orgabor/imago/SourceFolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/orgabor/imago/SourceFolder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/orgabor/imago/imago.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/orgabor/imago/imago.fxml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -30,8 +28,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/orgabor/imago/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+            <state relative-caret-position="287">
+              <caret line="67" column="100" selection-start-line="67" selection-start-column="100" selection-end-line="67" selection-end-column="100" />
             </state>
           </provider>
         </entry>
@@ -39,8 +37,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/orgabor/imago/SourceFolder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1122">
-              <caret line="66" column="1" lean-forward="true" selection-start-line="66" selection-start-column="1" selection-end-line="66" selection-end-column="1" />
+            <state relative-caret-position="170">
+              <caret line="10" column="24" lean-forward="true" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -78,8 +76,8 @@
         <option value="$PROJECT_DIR$/Imago.iml" />
         <option value="$PROJECT_DIR$/src/com/orgabor/imago/Main.java" />
         <option value="$PROJECT_DIR$/src/com/orgabor/imago/imago.fxml" />
-        <option value="$PROJECT_DIR$/src/com/orgabor/imago/Controller.java" />
         <option value="$PROJECT_DIR$/src/com/orgabor/imago/SourceFolder.java" />
+        <option value="$PROJECT_DIR$/src/com/orgabor/imago/Controller.java" />
       </list>
     </option>
   </component>
@@ -121,7 +119,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1565777550362" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1565779387011" />
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -185,7 +183,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.31993568" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.31993568" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -247,15 +245,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/orgabor/imago/SourceFolder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1122">
-          <caret line="66" column="1" lean-forward="true" selection-start-line="66" selection-start-column="1" selection-end-line="66" selection-end-column="1" />
+        <state relative-caret-position="170">
+          <caret line="10" column="24" lean-forward="true" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/orgabor/imago/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+        <state relative-caret-position="287">
+          <caret line="67" column="100" selection-start-line="67" selection-start-column="100" selection-end-line="67" selection-end-column="100" />
         </state>
       </provider>
     </entry>
