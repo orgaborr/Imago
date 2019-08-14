@@ -30,9 +30,14 @@ public class Controller {
         if(new File(sourceField.getText()).exists()) {
             if(checkDestFolder(destField.getText())) {
                 if(!nameField.getText().equals("")) {
-                    if (new SourceFolder(sourceField.getText())
-                            .copyImgs(destField.getText(), nameField.getText())) {
+                    printMessage("A feldolgozás megkezdõdött\n...");
+                    SourceFolder sourceFolder = new SourceFolder(sourceField.getText());
+                    if (sourceFolder.copyImgs(destField.getText(), nameField.getText()) > 0) {
+                        printMessage(sourceFolder.getSerialNumber() + " kép másolása befejezõdött");
                         return true;
+                    }
+                    if(sourceFolder.getExceptionMessage() != null) {
+                        printMessage(sourceFolder.getExceptionMessage());
                     }
                     return false;
                 }

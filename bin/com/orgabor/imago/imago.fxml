@@ -50,7 +50,7 @@
                 <padding>
                     <Insets bottom="10"/>
                 </padding>
-                <TextArea fx:id="messageTextArea"/>
+                <TextArea fx:id="messageTextArea" editable="false"/>
             </HBox>
         </VBox>
     </center>
