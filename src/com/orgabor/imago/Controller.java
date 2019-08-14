@@ -3,7 +3,7 @@ package com.orgabor.imago;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-
+import javafx.scene.control.Button;
 import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -18,9 +18,13 @@ public class Controller {
     private TextField nameField;
     @FXML
     private TextArea messageTextArea;
+    @FXML
+    private Button goButton;
 
-    //sets initial message in TextArea
+    //sets initial message in TextArea and sets goButton disabled
+    @FXML
     public void initialize() {
+        goButton.setDisable(true);
         printMessage("Üdv az Imago-ban! :) Töltsd ki a mezõket és katt a 'Mehet' gombra.");
     }
 
@@ -29,19 +33,15 @@ public class Controller {
     private boolean processFields() {
         if(new File(sourceField.getText()).exists()) {
             if(checkDestFolder(destField.getText())) {
-                if(!nameField.getText().equals("")) {
-                    printMessage("A feldolgozás megkezdõdött\n...");
-                    SourceFolder sourceFolder = new SourceFolder(sourceField.getText());
-                    if (sourceFolder.copyImgs(destField.getText(), nameField.getText()) > 0) {
-                        printMessage(sourceFolder.getSerialNumber() + " kép másolása befejezõdött");
-                        return true;
-                    }
-                    if(sourceFolder.getExceptionMessage() != null) {
-                        printMessage(sourceFolder.getExceptionMessage());
-                    }
-                    return false;
+                printMessage("A feldolgozás megkezdõdött\n...");
+                SourceFolder sourceFolder = new SourceFolder(sourceField.getText());
+                if (sourceFolder.copyImgs(destField.getText(), nameField.getText()) > 0) {
+                    printMessage(sourceFolder.getSerialNumber() + " kép másolása befejezõdött");
+                    return true;
                 }
-                printMessage("Adj meg nevet az új képfájloknak!");
+                if(sourceFolder.getExceptionMessage() != null) {
+                    printMessage(sourceFolder.getExceptionMessage());
+                }
                 return false;
             }
             return false;
@@ -65,10 +65,19 @@ public class Controller {
         return true;
     }
 
-    @FXML
     //prints messages to TextArea
+    @FXML
     private void printMessage(String message) {
         DateFormat df = new SimpleDateFormat("hh:mm:ss");
         messageTextArea.setText(messageTextArea.getText() + "[" + df.format(new Date())+ "] " + message + "\n");
+    }
+
+    //enables or disables goButton depending on if a field is empty
+    @FXML
+    private void checkFields() {
+        boolean disabled = sourceField.getText().isEmpty() || sourceField.getText().trim().isEmpty() ||
+                destField.getText().isEmpty() || destField.getText().trim().isEmpty() ||
+                nameField.getText().isEmpty() || nameField.getText().trim().isEmpty();
+        goButton.setDisable(disabled);
     }
 }

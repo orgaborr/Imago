@@ -28,17 +28,17 @@
                 <Label text="Forrásmappa:" GridPane.rowIndex="0" GridPane.columnIndex="0"
                        GridPane.halignment="RIGHT"/>
                 <TextField fx:id="sourceField" GridPane.rowIndex="0" GridPane.columnIndex="1"
-                           GridPane.columnSpan="30"/>
+                           GridPane.columnSpan="30" onKeyReleased="#checkFields"/>
 
                 <Label text="Célmappa:" GridPane.rowIndex="1" GridPane.columnIndex="0"
                        GridPane.halignment="RIGHT"/>
                 <TextField fx:id="destField" GridPane.rowIndex="1" GridPane.columnIndex="1"
-                           GridPane.columnSpan="30"/>
+                           GridPane.columnSpan="30" onKeyReleased="#checkFields"/>
 
                 <Label text="Új fájlok neve (kiterjesztés nélkül):" GridPane.rowIndex="2" GridPane.columnIndex="0"
                        GridPane.halignment="RIGHT" wrapText="true"/>
                 <TextField fx:id="nameField" GridPane.rowIndex="2" GridPane.columnIndex="1"
-                           GridPane.columnSpan="15"/>
+                           GridPane.columnSpan="15" onKeyReleased="#checkFields"/>
             </GridPane>
             <HBox alignment="CENTER">
                 <padding>
