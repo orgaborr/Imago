@@ -1,6 +1,7 @@
 package com.orgabor.imago;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import java.io.File;
 
@@ -11,9 +12,17 @@ public class Controller {
     private TextField destField;
     @FXML
     private TextField nameField;
+    @FXML
+    private TextArea messageTextArea;
+
+    //sets initial message in TextArea
+    public void initialize() {
+        messageTextArea.setText("Imago: Üdv az Imago-ban! :)");
+    }
 
     //checks the content of TextFields and calls copyImgs @SourceFolder
-    public boolean startProcessing() {
+    @FXML
+    private boolean startProcessing() {
         if(new File(sourceField.getText()).exists()) {
             if(checkDestFolder(destField.getText())) {
                 if(!nameField.getText().equals("")) {
@@ -23,27 +32,33 @@ public class Controller {
                     }
                     return false;
                 }
-                System.out.println("Adj meg nevet az új képfájloknak!");
+                printMessage("Adj meg nevet az új képfájloknak!");
                 return false;
             }
             return false;
         }
-        System.out.println("Érvénytelen forrásmappa. Ellenõrizd a forrás útvonalát!");
+        printMessage("Érvénytelen forrásmappa. Ellenõrizd a forrás útvonalát!");
         return false;
     }
 
     //checks if destination folder exists and creates it if not
-    private static boolean checkDestFolder(String path) {
+    private boolean checkDestFolder(String path) {
         File destFolder = new File(path);
         if (!destFolder.exists()) {
             destFolder.mkdirs();
             if (destFolder.exists()) {
-                System.out.println("Célmappa létrehozva: " + path);
+                printMessage("Célmappa létrehozva: " + path);
                 return true;
             }
-            System.out.println("Célmappa létrehozása sikertelen. Ellenõrizd a megadott útvonalat!");
+            printMessage("Célmappa létrehozása sikertelen. Ellenõrizd a megadott útvonalat!");
             return false;
         }
         return true;
+    }
+
+    @FXML
+    //prints messages to TextArea
+    private void printMessage(String message) {
+        messageTextArea.setText(messageTextArea.getText() + "\nImago: " + message);
     }
 }

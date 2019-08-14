@@ -5,15 +5,16 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class SourceFolder extends File {
+class SourceFolder extends File {
 
-    public SourceFolder(String pathname) {
+    SourceFolder(String pathname) {
         super(pathname);
     }
 
     //copies all files from source to destination folder
-    public boolean copyImgs(String destFolderPathname, String newFileName) {
+    boolean copyImgs(String destFolderPathname, String newFileName) {
         int serialNumber = 1;
+
         for (File fileEntry : this.listFiles()) {
             //checks if entry is image file and skips if not
             if (fileEntry.isFile()) {
@@ -63,5 +64,4 @@ public class SourceFolder extends File {
         String extension = fileName.substring((fileName.length() - 3), fileName.length());
         return extension;
     }
-
 }
