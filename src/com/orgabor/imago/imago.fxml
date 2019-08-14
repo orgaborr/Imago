@@ -44,7 +44,7 @@
                 <padding>
                     <Insets bottom="20"/>
                 </padding>
-                <Button fx:id="goButton" text="Mehet" onAction="#startProcessing"/>
+                <Button fx:id="goButton" text="Mehet" onAction="#processFields"/>
             </HBox>
             <HBox alignment="CENTER" prefHeight="85">
                 <padding>

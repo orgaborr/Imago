@@ -7,7 +7,7 @@ import java.io.IOException;
 
 class SourceFolder extends File {
     private int serialNumber = 1;
-    //exception messages will be saved here for printMessage @Controller
+    //exception messages will be saved here for printMessage in processFields @Controller
     private String exceptionMessage = null;
 
     SourceFolder(String pathname) {

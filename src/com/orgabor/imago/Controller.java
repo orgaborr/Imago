@@ -26,7 +26,7 @@ public class Controller {
 
     //checks the content of TextFields and calls copyImgs @SourceFolder
     @FXML
-    private boolean startProcessing() {
+    private boolean processFields() {
         if(new File(sourceField.getText()).exists()) {
             if(checkDestFolder(destField.getText())) {
                 if(!nameField.getText().equals("")) {
