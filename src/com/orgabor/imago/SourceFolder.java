@@ -7,15 +7,13 @@ import java.io.IOException;
 
 class SourceFolder extends File {
     private int serialNumber = 1;
-    //exception messages will be saved here for printMessage in processFields @Controller
-    private String exceptionMessage = null;
 
     SourceFolder(String pathname) {
         super(pathname);
     }
 
-    //copies all files from source to destination folder
-    int copyImgs(String destFolderPathname, String newFileName) {
+    //copies all files from source to destination folder, exception handled in processFields @Controller
+    int copyImgs(String destFolderPathname, String newFileName) throws IOException {
         for (File fileEntry : this.listFiles()) {
             //checks if entry is image file and skips if not
             if (fileEntry.isFile()) {
@@ -25,30 +23,21 @@ class SourceFolder extends File {
             } else {
                 continue;
             }
-
             BufferedImage bImg = readImg(fileEntry);
             File copy = new File(destFolderPathname,
                     nameFile(fileEntry, newFileName, serialNumber));
-            try {
-                ImageIO.write(bImg, getExtension(fileEntry), copy);
-            } catch (IOException e) {
-                exceptionMessage = e.getMessage();
-            }
+            ImageIO.write(bImg, getExtension(fileEntry), copy);
             serialNumber++;
         }
         serialNumber -= 1;
         return serialNumber;
     }
 
-    //reads image file and returns BufferedImage
-    private BufferedImage readImg(File file) {
+    //reads image file and returns BufferedImage, called in copyImgs,
+    // exception handled in processFields @Controller
+    private BufferedImage readImg(File file) throws IOException {
         BufferedImage img = null;
-        try {
-            img = ImageIO.read(file);
-        } catch (IOException e) {
-            exceptionMessage = e.getMessage();
-        }
-
+        img = ImageIO.read(file);
         return img;
     }
 
@@ -68,9 +57,5 @@ class SourceFolder extends File {
 
     int getSerialNumber() {
         return serialNumber;
-    }
-
-    String getExceptionMessage() {
-        return exceptionMessage;
     }
 }

@@ -5,6 +5,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
 import java.io.File;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -28,21 +29,22 @@ public class Controller {
         printMessage("Üdv az Imago-ban! :) Töltsd ki a mezõket és katt a 'Mehet' gombra.");
     }
 
-    //checks the content of TextFields and calls copyImgs @SourceFolder
+    //checks the content of TextFields and calls copyImgs @SourceFolder, prints IOExceptions
     @FXML
     private boolean processFields() {
         if(new File(sourceField.getText()).exists()) {
             if(checkDestFolder(destField.getText())) {
                 printMessage("A feldolgozás megkezdõdött\n...");
                 SourceFolder sourceFolder = new SourceFolder(sourceField.getText());
-                if (sourceFolder.copyImgs(destField.getText(), nameField.getText()) > 0) {
-                    printMessage(sourceFolder.getSerialNumber() + " kép másolása befejezõdött");
-                    return true;
+                try {
+                    if (sourceFolder.copyImgs(destField.getText(), nameField.getText()) > 0) {
+                        printMessage(sourceFolder.getSerialNumber() + " kép másolása befejezõdött.");
+                        return true;
+                    }
+                    printMessage("A megadott forrásmappában nincsenek képfájlok.");
+                } catch(IOException e) {
+                    printMessage(e.getMessage());
                 }
-                if(sourceFolder.getExceptionMessage() != null) {
-                    printMessage(sourceFolder.getExceptionMessage());
-                }
-                return false;
             }
             return false;
         }
