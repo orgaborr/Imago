@@ -31,25 +31,44 @@ public class Controller {
 
     //checks the content of TextFields and calls copyImgs @SourceFolder, prints IOExceptions
     @FXML
-    private boolean processFields() {
-        if(new File(sourceField.getText()).exists()) {
-            if(checkDestFolder(destField.getText())) {
-                printMessage("A feldolgozás megkezdõdött\n...");
-                SourceFolder sourceFolder = new SourceFolder(sourceField.getText());
-                try {
-                    if (sourceFolder.copyImgs(destField.getText(), nameField.getText()) > 0) {
-                        printMessage(sourceFolder.getSerialNumber() + " kép másolása befejezõdött.");
-                        return true;
+    private void processFields() {
+        new Thread() {
+            public void run() {
+                goButton.setDisable(true);
+                if(new File(sourceField.getText()).exists()) {
+                    if(checkDestFolder(destField.getText())) {
+                        printMessage("A feldolgozás megkezdõdött\n...");
+                        SourceFolder sourceFolder = new SourceFolder(sourceField.getText());
+
+                        Thread copyThread = new Thread() {
+                            public void run() {
+                                try {
+                                    sourceFolder.copyImgs(destField.getText(), nameField.getText());
+                                } catch(IOException e) {
+                                    printMessage(e.getMessage());
+                                }
+                            }
+                        };
+                        copyThread.start();
+
+                        try {
+                            copyThread.join();
+                        } catch(InterruptedException e) {
+                            printMessage(e.getMessage());
+                        }
+
+                        if(sourceFolder.getSerialNumber() > 0) {
+                            printMessage(sourceFolder.getSerialNumber() + " kép másolása befejezõdött.");
+                        } else {
+                            printMessage("A megadott forrásmappában nincsenek képfájlok.");
+                        }
                     }
-                    printMessage("A megadott forrásmappában nincsenek képfájlok.");
-                } catch(IOException e) {
-                    printMessage(e.getMessage());
+                } else {
+                    printMessage("Érvénytelen forrásmappa. Ellenõrizd a forrás útvonalát!");
                 }
+                checkFields();
             }
-            return false;
-        }
-        printMessage("Érvénytelen forrásmappa. Ellenõrizd a forrás útvonalát!");
-        return false;
+        }.start();
     }
 
     //checks if destination folder exists and creates it if not

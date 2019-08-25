@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 
 class SourceFolder extends File {
+    //numbering of images
     private int serialNumber = 1;
 
     SourceFolder(String pathname) {
