@@ -89,13 +89,14 @@ public class Controller {
         return true;
     }
 
-    //prints messages to TextArea
+    //prints messages to messageTextArea
     @FXML
     private void printMessage(String message) {
         DateFormat df = new SimpleDateFormat("hh:mm:ss");
         messageTextArea.appendText("[" + df.format(new Date())+ "] " + message + "\n");
     }
 
+    //clears the messageTextArea
     @FXML
     private void clearText() {
         messageTextArea.setText(null);

@@ -14,7 +14,7 @@ class SourceFolder extends File {
     }
 
     //copies all files from source to destination folder, exception handled in processFields @Controller
-    int copyImgs(String destFolderPathname, String newFileName) throws IOException {
+    void copyImgs(String destFolderPathname, String newFileName) throws IOException {
         for (File fileEntry : this.listFiles()) {
             //checks if entry is image file and skips if not
             if (fileEntry.isFile()) {
@@ -31,7 +31,6 @@ class SourceFolder extends File {
             serialNumber++;
         }
         serialNumber -= 1;
-        return serialNumber;
     }
 
     //reads image file and returns BufferedImage, called in copyImgs,
