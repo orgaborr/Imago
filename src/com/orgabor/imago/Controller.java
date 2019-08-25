@@ -1,9 +1,10 @@
 package com.orgabor.imago;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Button;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -90,7 +91,7 @@ public class Controller {
     @FXML
     private void printMessage(String message) {
         DateFormat df = new SimpleDateFormat("hh:mm:ss");
-        messageTextArea.setText(messageTextArea.getText() + "[" + df.format(new Date())+ "] " + message + "\n");
+        messageTextArea.appendText("[" + df.format(new Date())+ "] " + message + "\n");
     }
 
     //enables or disables goButton depending on if a field is empty
