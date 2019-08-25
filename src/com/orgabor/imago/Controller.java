@@ -22,6 +22,8 @@ public class Controller {
     private TextArea messageTextArea;
     @FXML
     private Button goButton;
+    @FXML
+    private Button clearButton;
 
     //sets initial message in TextArea and sets goButton disabled
     @FXML
@@ -92,6 +94,11 @@ public class Controller {
     private void printMessage(String message) {
         DateFormat df = new SimpleDateFormat("hh:mm:ss");
         messageTextArea.appendText("[" + df.format(new Date())+ "] " + message + "\n");
+    }
+
+    @FXML
+    private void clearText() {
+        messageTextArea.setText(null);
     }
 
     //enables or disables goButton depending on if a field is empty
