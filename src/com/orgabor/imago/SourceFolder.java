@@ -1,8 +1,7 @@
 package com.orgabor.imago;
 
 import javax.imageio.ImageIO;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 
 class SourceFolder extends File {
@@ -24,12 +23,9 @@ class SourceFolder extends File {
             } else {
                 continue;
             }
-
             File copy = new File(destFolderPathname,
                     nameFile(fileEntry, newFileName, serialNumber));
-
             Files.copy(fileEntry.toPath(), copy.toPath());
-
             serialNumber++;
         }
         serialNumber -= 1;

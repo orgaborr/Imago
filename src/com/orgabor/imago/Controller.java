@@ -48,7 +48,7 @@ public class Controller {
                                 try {
                                     sourceFolder.copyImgs(destField.getText(), nameField.getText());
                                 } catch(IOException e) {
-                                    printMessage(e.getMessage());
+                                    printMessage(e.toString());
                                 }
                             }
                         };
@@ -78,8 +78,7 @@ public class Controller {
     private boolean checkDestFolder(String path) {
         File destFolder = new File(path);
         if (!destFolder.exists()) {
-            destFolder.mkdirs();
-            if (destFolder.exists()) {
+            if (destFolder.mkdirs()) {
                 printMessage("Célmappa létrehozva: " + path);
                 return true;
             }
