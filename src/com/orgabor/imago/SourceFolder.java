@@ -1,7 +1,8 @@
 package com.orgabor.imago;
 
 import javax.imageio.ImageIO;
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 
@@ -29,6 +30,7 @@ class SourceFolder extends File {
                 Files.copy(fileEntry.toPath(), copy.toPath());
                 serialNumber++;
             } catch(FileAlreadyExistsException e) {
+                serialNumber -= 1;
                 continue;
             }
         }
