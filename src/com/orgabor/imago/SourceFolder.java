@@ -15,6 +15,7 @@ class SourceFolder extends File {
     //copies all files from source to destination folder, exception handled in processFields @Controller
     int copyImgs(String destFolderPathname, String newFileName) throws IOException {
         int serialNumber = 1;
+        int filesCopied = 0;
         for (File fileEntry : this.listFiles()) {
             //checks if entry is image file and skips if not
             if (fileEntry.isFile()) {
@@ -28,14 +29,16 @@ class SourceFolder extends File {
                     nameFile(fileEntry, newFileName, serialNumber));
             try {
                 Files.copy(fileEntry.toPath(), copy.toPath());
-                serialNumber++;
+                filesCopied++;
             } catch(FileAlreadyExistsException e) {
-                serialNumber -= 1;
                 continue;
+            } finally {
+                serialNumber++;
             }
+
         }
-        serialNumber -= 1;
-        return serialNumber;
+        filesCopied -= 1;
+        return filesCopied;
     }
 
     int imgCounter() throws IOException {
