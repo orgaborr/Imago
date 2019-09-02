@@ -2,18 +2,18 @@ package com.orgabor.imago;
 
 import javax.imageio.ImageIO;
 import java.io.*;
+import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 
 class SourceFolder extends File {
-    //numbering of images
-    private int serialNumber = 1;
 
     SourceFolder(String pathname) {
         super(pathname);
     }
 
     //copies all files from source to destination folder, exception handled in processFields @Controller
-    void copyImgs(String destFolderPathname, String newFileName) throws IOException {
+    int copyImgs(String destFolderPathname, String newFileName) throws IOException {
+        int serialNumber = 1;
         for (File fileEntry : this.listFiles()) {
             //checks if entry is image file and skips if not
             if (fileEntry.isFile()) {
@@ -25,10 +25,30 @@ class SourceFolder extends File {
             }
             File copy = new File(destFolderPathname,
                     nameFile(fileEntry, newFileName, serialNumber));
-            Files.copy(fileEntry.toPath(), copy.toPath());
-            serialNumber++;
+            try {
+                Files.copy(fileEntry.toPath(), copy.toPath());
+                serialNumber++;
+            } catch(FileAlreadyExistsException e) {
+                continue;
+            }
         }
         serialNumber -= 1;
+        return serialNumber;
+    }
+
+    int imgCounter() throws IOException {
+        int count = 0;
+        for(File entry : this.listFiles()) {
+            if (entry.isFile()) {
+                if (ImageIO.read(entry) == null) {
+                    continue;
+                }
+            } else {
+                continue;
+            }
+            count++;
+        }
+        return count;
     }
 
     //names the new file with numbering and extension
@@ -43,9 +63,5 @@ class SourceFolder extends File {
         String fileName = file.getName();
         String extension = fileName.substring((fileName.length() - 3), fileName.length());
         return extension;
-    }
-
-    int getSerialNumber() {
-        return serialNumber;
     }
 }

@@ -36,6 +36,7 @@ public class Controller {
     @FXML
     private void processFields() {
         new Thread() {
+            int count = 0;
             public void run() {
                 goButton.setDisable(true);
                 if(new File(sourceField.getText()).exists()) {
@@ -46,7 +47,13 @@ public class Controller {
                         Thread copyThread = new Thread() {
                             public void run() {
                                 try {
-                                    sourceFolder.copyImgs(destField.getText(), nameField.getText());
+                                    if((count = sourceFolder.copyImgs(destField.getText(), nameField.getText())) > 0) {
+                                        printMessage(count + " kép másolása befejezõdött.");
+                                    } else if(sourceFolder.imgCounter() > 0) {
+                                        printMessage("A fájlok már szerepelnek a mappában.");
+                                    } else {
+                                        printMessage("A megadott forrásmappában nincsenek képfájlok.");
+                                    }
                                 } catch(IOException e) {
                                     printMessage(e.toString());
                                 }
@@ -58,12 +65,6 @@ public class Controller {
                             copyThread.join();
                         } catch(InterruptedException e) {
                             printMessage(e.getMessage());
-                        }
-
-                        if(sourceFolder.getSerialNumber() > 0) {
-                            printMessage(sourceFolder.getSerialNumber() + " kép másolása befejezõdött.");
-                        } else {
-                            printMessage("A megadott forrásmappában nincsenek képfájlok.");
                         }
                     }
                 } else {
