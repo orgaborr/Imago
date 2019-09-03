@@ -1,5 +1,7 @@
 package com.orgabor.imago;
 
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -33,32 +35,9 @@ public class Controller {
     //checks the content of TextFields and calls copyImgs @SourceFolder, prints IOExceptions
     @FXML
     private void processFields() {
-        new Thread() {
-            int count = 0;
-            public void run() {
-                goButton.setDisable(true);
-                if(new File(sourceField.getText()).exists()) {
-                    if(checkDestFolder(destField.getText())) {
-                        printMessage("A feldolgozás megkezdõdött\n...");
-                        SourceFolder sourceFolder = new SourceFolder(sourceField.getText());
-                        try {
-                            if((count = sourceFolder.copyImgs(destField.getText(), nameField.getText())) > 0) {
-                                printMessage(count + " kép másolása befejezõdött.");
-                            } else if(sourceFolder.imgCounter() > 0) {
-                                printMessage("A fájlok már szerepelnek a mappában.");
-                            } else {
-                                printMessage("A megadott forrásmappában nincsenek képfájlok.");
-                            }
-                        } catch(IOException e) {
-                            printMessage(e.toString());
-                        }
-                    }
-                } else {
-                    printMessage("Érvénytelen forrásmappa. Ellenõrizd a forrás útvonalát!");
-                }
-                checkFields();
-            }
-        }.start();
+        goButton.setDisable(true);
+        new CopyService().start();
+        checkFields();
     }
 
     //checks if destination folder exists and creates it if not
@@ -79,7 +58,7 @@ public class Controller {
     @FXML
     private void printMessage(String message) {
         DateFormat df = new SimpleDateFormat("hh:mm:ss");
-        messageTextArea.appendText("[" + df.format(new Date())+ "] " + message + "\n");
+        messageTextArea.appendText("[" + df.format(new Date()) + "] " + message + "\n");
     }
 
     //clears the messageTextArea
@@ -95,5 +74,37 @@ public class Controller {
                 destField.getText().isEmpty() || destField.getText().trim().isEmpty() ||
                 nameField.getText().isEmpty() || nameField.getText().trim().isEmpty();
         goButton.setDisable(disabled);
+    }
+
+    private class CopyService extends Service<Integer> {
+        @Override
+        protected Task<Integer> createTask() {
+            return new Task<Integer>() {
+                @Override
+                protected Integer call() throws Exception {
+                    int count = 0;
+                    if (new File(sourceField.getText()).exists()) {
+                        if (checkDestFolder(destField.getText())) {
+                            printMessage("A feldolgozás megkezdõdött\n...");
+                            SourceFolder sourceFolder = new SourceFolder(sourceField.getText());
+                            try {
+                                if ((count = sourceFolder.copyImgs(destField.getText(), nameField.getText())) > 0) {
+                                    printMessage(count + " kép másolása befejezõdött.");
+                                } else if (sourceFolder.imgCounter() > 0) {
+                                    printMessage("A fájlok már szerepelnek a mappában.");
+                                } else {
+                                    printMessage("A megadott forrásmappában nincsenek képfájlok.");
+                                }
+                            } catch (IOException e) {
+                                printMessage(e.toString());
+                            }
+                        }
+                    } else {
+                        printMessage("Érvénytelen forrásmappa. Ellenõrizd a forrás útvonalát!");
+                    }
+                    return count;
+                }
+            };
+        }
     }
 }
