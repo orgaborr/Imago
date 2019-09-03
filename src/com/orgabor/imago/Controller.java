@@ -22,8 +22,6 @@ public class Controller {
     private TextArea messageTextArea;
     @FXML
     private Button goButton;
-    @FXML
-    private Button clearButton;
 
     //sets initial message in TextArea and sets goButton disabled
     @FXML
@@ -43,28 +41,16 @@ public class Controller {
                     if(checkDestFolder(destField.getText())) {
                         printMessage("A feldolgozás megkezdõdött\n...");
                         SourceFolder sourceFolder = new SourceFolder(sourceField.getText());
-
-                        Thread copyThread = new Thread() {
-                            public void run() {
-                                try {
-                                    if((count = sourceFolder.copyImgs(destField.getText(), nameField.getText())) > 0) {
-                                        printMessage(count + " kép másolása befejezõdött.");
-                                    } else if(sourceFolder.imgCounter() > 0) {
-                                        printMessage("A fájlok már szerepelnek a mappában.");
-                                    } else {
-                                        printMessage("A megadott forrásmappában nincsenek képfájlok.");
-                                    }
-                                } catch(IOException e) {
-                                    printMessage(e.toString());
-                                }
-                            }
-                        };
-                        copyThread.start();
-
                         try {
-                            copyThread.join();
-                        } catch(InterruptedException e) {
-                            printMessage(e.getMessage());
+                            if((count = sourceFolder.copyImgs(destField.getText(), nameField.getText())) > 0) {
+                                printMessage(count + " kép másolása befejezõdött.");
+                            } else if(sourceFolder.imgCounter() > 0) {
+                                printMessage("A fájlok már szerepelnek a mappában.");
+                            } else {
+                                printMessage("A megadott forrásmappában nincsenek képfájlok.");
+                            }
+                        } catch(IOException e) {
+                            printMessage(e.toString());
                         }
                     }
                 } else {

@@ -37,7 +37,6 @@ class SourceFolder extends File {
             }
 
         }
-        filesCopied -= 1;
         return filesCopied;
     }
 

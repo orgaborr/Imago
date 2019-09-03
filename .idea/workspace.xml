@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="45e2426b-0bc3-469a-8b25-c3e0e51d2551" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/com/orgabor/imago/SourceFolder.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/com/orgabor/imago/SourceFolder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/orgabor/imago/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/orgabor/imago/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/orgabor/imago/SourceFolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/orgabor/imago/SourceFolder.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
@@ -27,20 +27,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/orgabor/imago/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="52" column="93" lean-forward="true" selection-start-line="52" selection-start-column="93" selection-end-line="52" selection-end-column="93" />
+            <state relative-caret-position="1310">
+              <caret line="79" column="12" lean-forward="true" selection-start-line="79" selection-start-column="12" selection-end-line="79" selection-end-column="12" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/orgabor/imago/SourceFolder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="31" column="30" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="30" />
+            <state relative-caret-position="646">
+              <caret line="38" column="9" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -78,8 +78,8 @@
         <option value="$PROJECT_DIR$/Imago.iml" />
         <option value="$PROJECT_DIR$/src/com/orgabor/imago/imago.fxml" />
         <option value="$PROJECT_DIR$/src/com/orgabor/imago/Main.java" />
-        <option value="$PROJECT_DIR$/src/com/orgabor/imago/Controller.java" />
         <option value="$PROJECT_DIR$/src/com/orgabor/imago/SourceFolder.java" />
+        <option value="$PROJECT_DIR$/src/com/orgabor/imago/Controller.java" />
       </list>
     </option>
   </component>
@@ -93,37 +93,7 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Imago" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Imago" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Imago" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Imago" type="462c0819:PsiDirectoryNode" />
-              <item name="bin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Imago" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Imago" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Imago" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Imago" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="imago" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1567250804437" />
@@ -309,17 +279,17 @@
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/orgabor/imago/Controller.java">
+    <entry file="file://$PROJECT_DIR$/src/com/orgabor/imago/SourceFolder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="52" column="93" lean-forward="true" selection-start-line="52" selection-start-column="93" selection-end-line="52" selection-end-column="93" />
+        <state relative-caret-position="646">
+          <caret line="38" column="9" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/orgabor/imago/SourceFolder.java">
+    <entry file="file://$PROJECT_DIR$/src/com/orgabor/imago/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="31" column="30" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="30" />
+        <state relative-caret-position="1310">
+          <caret line="79" column="12" lean-forward="true" selection-start-line="79" selection-start-column="12" selection-end-line="79" selection-end-column="12" />
         </state>
       </provider>
     </entry>
