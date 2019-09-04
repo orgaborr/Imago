@@ -3,7 +3,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:controller="com.orgabor.imago.Controller"
+<BorderPane fx:id ="mainBorderPane" fx:controller="com.orgabor.imago.Controller"
             xmlns:fx="http://javafx.com/fxml">
     <padding>
         <Insets top="10" bottom="10" left="15" right="15"/>

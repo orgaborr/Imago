@@ -3,9 +3,10 @@ package com.orgabor.imago;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,6 +25,8 @@ public class Controller {
     private TextArea messageTextArea;
     @FXML
     private Button goButton;
+    @FXML
+    private BorderPane mainBorderPane;
 
     //sets initial message in TextArea and sets goButton disabled
     @FXML
@@ -76,6 +79,20 @@ public class Controller {
         goButton.setDisable(disabled);
     }
 
+    @FXML
+    private void showProgressDialog() {
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.initOwner(mainBorderPane.getScene().getWindow());
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("progressDialog.fxml"));
+            dialog.getDialogPane().setContent(root);
+        } catch(IOException e) {
+            printMessage(e.toString());
+        }
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+    }
+
     private class CopyService extends Service<Integer> {
         @Override
         protected Task<Integer> createTask() {
@@ -87,6 +104,7 @@ public class Controller {
                         if (checkDestFolder(destField.getText())) {
                             printMessage("A feldolgozás megkezdõdött\n...");
                             SourceFolder sourceFolder = new SourceFolder(sourceField.getText());
+                            showProgressDialog();
                             try {
                                 if ((count = sourceFolder.copyImgs(destField.getText(), nameField.getText())) > 0) {
                                     printMessage(count + " kép másolása befejezõdött.");
